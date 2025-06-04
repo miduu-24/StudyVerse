@@ -1,0 +1,5 @@
+# Created at 2025-05-19T21:18:46.436
+Boot Manifest-JAR contains absolute paths in classpath 'D:\LICENTA\StudyVerse\backend\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+

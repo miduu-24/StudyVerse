@@ -1,0 +1,8 @@
+com\studyverse\models\EquationSolverTest.class
+com\studyverse\models\LessonTest.class
+com\studyverse\models\QuestionTest.class
+com\studyverse\models\NotificationTest.class
+com\studyverse\models\HistoryTest.class
+com\studyverse\models\QuizTest.class
+com\studyverse\models\UserTest.class
+com\studyverse\models\MoleculeTest.class

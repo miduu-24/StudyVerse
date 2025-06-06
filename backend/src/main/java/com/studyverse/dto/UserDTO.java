@@ -10,7 +10,10 @@ public class UserDTO {
     private String username;
     private String password;
     private String email;
-    private Integer scoreMath ;
-    private Integer scoreChemistry ;
-    private Integer problemHistory ;
+    private String photoPath;
+    private String backgroundPhotoPath;
+    private Integer scoreMath;
+    private Integer scoreChemistry;
+    private Integer problemHistory;
+
 }

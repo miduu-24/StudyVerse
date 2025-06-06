@@ -12,7 +12,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 @Entity
 @Getter
 @Setter
@@ -34,6 +33,9 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotBlank(message = "Password cannot be empty")
     private String password;
+
+    private String photoPath;
+    private String backgroundPhotoPath;
 
     private Integer scoreMath = 0;
     private Integer scoreChemistry = 0;

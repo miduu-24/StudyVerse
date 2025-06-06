@@ -19,6 +19,8 @@ export const Colors = {
     tabIconSelected: tintColorLight,
     button: 'rgb(20, 41, 32)',
     linklogin: 'rgb(50, 120, 201)',
+    contentBackground: 'rgb(218, 218, 218)',
+    shadowColor: 'rgb(0, 0, 0)',
   },
   dark: {
     text: 'rgb(255, 255, 255)',
@@ -29,6 +31,8 @@ export const Colors = {
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
     button: 'rgb(112, 162, 136)',
-    linklogin: 'rgb(50, 120, 201)'
+    linklogin: 'rgb(50, 120, 201)',
+    contentBackground: 'rgb(14, 15, 15)',
+    shadowColor: 'rgb(255, 255, 255)',
   },
 };

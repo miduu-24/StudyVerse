@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const AuthContext = createContext();
 
-const BASE_URL = 'http://192.168.1.2:8080/api/auth';
+const BASE_URL = 'http://192.168.100.9:8080/api/auth';
  // ← adresa ta locală
 
 
@@ -16,7 +16,9 @@ export const AuthProvider = ({ children }) => {
       const token = await AsyncStorage.getItem('token');
       const email = await AsyncStorage.getItem('email');
       const username = await AsyncStorage.getItem('username');
-      if (token && email) setUser({ email, username });
+      const photoPath = await AsyncStorage.getItem('photoPath');
+      const backgroundPhotoPath = await AsyncStorage.getItem('backgroundPhotoPath');
+      if (token && email) setUser({ email, username , photoPath: photoPath || '', backgroundPhotoPath: backgroundPhotoPath || '' });
     };
     load();
   }, []);
@@ -34,7 +36,11 @@ export const AuthProvider = ({ children }) => {
       await AsyncStorage.setItem('token', data.token);
       await AsyncStorage.setItem('email', data.user.email);
       await AsyncStorage.setItem('username', data.user.username);
-      setUser({ email: data.user.email, username: data.user.username });
+      await AsyncStorage.setItem('photoPath', data.user.photoPath || '');
+      await AsyncStorage.setItem('backgroundPhotoPath', data.user.backgroundPhotoPath || '');
+
+
+      setUser({ email: data.user.email, username: data.user.username, photoPath: data.user.photoPath || '', backgroundPhotoPath: data.user.backgroundPhotoPath || '' });
     } else {
       throw new Error(data.message || 'Login eșuat');
     }
@@ -59,11 +65,13 @@ export const AuthProvider = ({ children }) => {
     await AsyncStorage.removeItem('token');
     await AsyncStorage.removeItem('email');
     await AsyncStorage.removeItem('username');
+    await AsyncStorage.removeItem('photoPath');
+    await AsyncStorage.removeItem('backgroundPhotoPath');
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout }}>
+    <AuthContext.Provider value={{ user, login, register, logout, setUser }}>
       {children}
     </AuthContext.Provider>
   );

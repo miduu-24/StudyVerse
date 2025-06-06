@@ -2,17 +2,15 @@ package com.studyverse.controllers;
 
 import com.studyverse.models.User;
 import com.studyverse.repositories.UserRepository;
+import com.studyverse.dto.LoginRequestDTO;
+import com.studyverse.dto.RegisterRequestDTO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import com.studyverse.dto.LoginRequestDTO;
-import com.studyverse.dto.RegisterRequestDTO;
-
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -22,6 +20,8 @@ public class AuthController {
     private UserRepository userRepository;
 
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    private static final String DEFAULT_AVATAR = "https://www.gravatar.com/avatar/?d=mp";
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequestDTO request) {
@@ -45,6 +45,8 @@ public class AuthController {
         user.setEmail(email);
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
+        user.setPhotoPath(DEFAULT_AVATAR); // ✅ setăm o poză implicită
+        user.setBackgroundPhotoPath(null); // poate fi null
         userRepository.save(user);
 
         return ResponseEntity.ok(Map.of("message", "Cont creat"));
@@ -67,10 +69,20 @@ public class AuthController {
 
         String fakeToken = UUID.randomUUID().toString();
 
-        return ResponseEntity.ok(Map.of(
-                "token", fakeToken,
-                "user", Map.of("email", user.getEmail(),
-                        "username", user.getUsername())));
-    }
+        // ✅ Nu mai folosim Map.of — evităm crash la valori null
+        Map<String, Object> userData = new HashMap<>();
+        userData.put("email", user.getEmail());
+        userData.put("username", user.getUsername());
+        userData.put("photoPath", user.getPhotoPath()); // poate fi null
+        userData.put("backgroundPhotoPath", user.getBackgroundPhotoPath()); // poate fi null
+        userData.put("scoreMath", user.getScoreMath());
+        userData.put("scoreChemistry", user.getScoreChemistry());
+        userData.put("problemHistory", user.getProblemHistory());
 
+        Map<String, Object> response = new HashMap<>();
+        response.put("token", fakeToken);
+        response.put("user", userData);
+
+        return ResponseEntity.ok(response);
+    }
 }

@@ -16,15 +16,15 @@ const App = () => {
 
       <Text style={styles.title}>Bine ai venit în StudyVerse!</Text>
       
-      <Link href="/(lectii)/math_lecture" asChild >
+      <Link href="/(lectii)/math" asChild >
       <Pressable style={styles.button}>
-        <Text style={styles.buttonText}>Lecții Matematică</Text>
+        <Text style={styles.buttonText}>Matematică</Text>
       </Pressable>
       </Link>
 
-      <Link href="/(lectii)/chim_lecture" asChild >
+      <Link href="/(lectii)/chim" asChild >
       <Pressable style={styles.button}>
-        <Text style={styles.buttonText}>Lecții Chimie</Text>
+        <Text style={styles.buttonText}>Chimie</Text>
       </Pressable>
       </Link>
 

@@ -4,6 +4,7 @@ import com.studyverse.dto.UserDTO;
 import com.studyverse.exceptions.UserNotFoundException;
 import com.studyverse.models.User;
 import com.studyverse.services.UserService;
+import com.studyverse.dto.AvatarUpdateDTO;
 
 import jakarta.validation.Valid;
 
@@ -30,11 +31,12 @@ public class UserController {
     public User createUser(@RequestBody @Valid UserDTO userDTO) {
         User user = new User();
         user.setUsername(userDTO.getUsername());
-        user.setPassword(userDTO.getPassword());  // Poți adăuga criptare a parolei
+        user.setPassword(userDTO.getPassword()); // Poți adăuga criptare a parolei
         user.setEmail(userDTO.getEmail());
         user.setScoreMath(userDTO.getScoreMath());
         user.setScoreChemistry(userDTO.getScoreChemistry());
         user.setProblemHistory(userDTO.getProblemHistory());
+        user.setPhotoPath(userDTO.getPhotoPath());
 
         return userService.save(user);
     }
@@ -48,13 +50,16 @@ public class UserController {
     // Endpoint pentru actualizarea unui utilizator
     @PutMapping("/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody @Valid UserDTO userDTO) {
-        User user = userService.findById(id).orElseThrow(() -> new UserNotFoundException("User not found with id " + id));
+        User user = userService.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User not found with id " + id));
         user.setUsername(userDTO.getUsername());
         user.setPassword(userDTO.getPassword()); // Poți adăuga criptare a parolei
         user.setEmail(userDTO.getEmail());
         user.setScoreMath(userDTO.getScoreMath());
         user.setScoreChemistry(userDTO.getScoreChemistry());
         user.setProblemHistory(userDTO.getProblemHistory());
+        user.setPhotoPath(userDTO.getPhotoPath());
+        user.setBackgroundPhotoPath(userDTO.getBackgroundPhotoPath());
 
         return userService.save(user);
     }
@@ -64,5 +69,25 @@ public class UserController {
     public void deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
     }
-}
 
+    // Endpoint pentru actualizarea avatarului
+    @PutMapping("/avatar")
+    public void updateAvatar(@RequestBody AvatarUpdateDTO dto) {
+        User user = userService.findByEmail(dto.getEmail())
+                .orElseThrow(() -> new UserNotFoundException("User not found with email " + dto.getEmail()));
+
+        user.setPhotoPath(dto.getAvatarUrl());
+        userService.save(user);
+    }
+
+    // Endpoint pentru actualizarea fundalului
+    @PutMapping("/background")
+    public void updateBackground(@RequestBody AvatarUpdateDTO dto) {
+        User user = userService.findByEmail(dto.getEmail())
+                .orElseThrow(() -> new UserNotFoundException("User not found with email " + dto.getEmail()));
+
+        user.setBackgroundPhotoPath(dto.getBackgroundPhotoUrl());
+        userService.save(user);
+    }
+
+}

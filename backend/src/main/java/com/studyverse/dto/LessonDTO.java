@@ -10,6 +10,7 @@ import java.util.List;
 public class LessonDTO {
 
     private String title;
+    private String subject;
     private String description;
     private String content;
     private Integer difficultyLevel;

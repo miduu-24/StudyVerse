@@ -21,10 +21,11 @@ public class LessonTest {
         validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
-    private Lesson buildLesson(String title, String description, String content, int difficultyLevel) {
+    private Lesson buildLesson(String title, String subject, String description, String content, int difficultyLevel) {
         return new Lesson(
                 1L,
                 title,
+                subject,
                 description,
                 content,
                 difficultyLevel,
@@ -37,6 +38,7 @@ public class LessonTest {
     public void testValidLesson() {
         Lesson lesson = buildLesson(
                 "Java Basics",
+                "Informatics",
                 "Introductory Java concepts.",
                 "Lesson content here.",
                 3);
@@ -48,6 +50,7 @@ public class LessonTest {
     public void testEmptyTitle() {
         Lesson lesson = buildLesson(
                 "",
+                "Informatics",
                 "Description ok",
                 "Content ok",
                 2);
@@ -59,6 +62,7 @@ public class LessonTest {
     public void testEmptyDescription() {
         Lesson lesson = buildLesson(
                 "Java Basics",
+                "Informatics",
                 "",
                 "Some content",
                 3);
@@ -70,6 +74,7 @@ public class LessonTest {
     public void testEmptyContent() {
         Lesson lesson = buildLesson(
                 "Java Basics",
+                "Informatics",
                 "Some description",
                 "",
                 2);
@@ -81,6 +86,7 @@ public class LessonTest {
     public void testDifficultyLevelTooLow() {
         Lesson lesson = buildLesson(
                 "Java Basics",
+                "Informatics",
                 "Valid description",
                 "Valid content",
                 0);
@@ -92,6 +98,7 @@ public class LessonTest {
     public void testDifficultyLevelTooHigh() {
         Lesson lesson = buildLesson(
                 "Java Basics",
+                "Informatics",
                 "Valid description",
                 "Valid content",
                 6);
@@ -101,8 +108,8 @@ public class LessonTest {
 
     @Test
     public void testValidDifficultyLevelBoundaries() {
-        Lesson lessonLow = buildLesson("T", "D", "C", 1);
-        Lesson lessonHigh = buildLesson("T", "D", "C", 5);
+        Lesson lessonLow = buildLesson("T", "D", "C", "Content", 1);
+        Lesson lessonHigh = buildLesson("T", "D", "C", "Content", 5);
 
         assertTrue(validator.validate(lessonLow).isEmpty(), "Level 1 should be valid");
         assertTrue(validator.validate(lessonHigh).isEmpty(), "Level 5 should be valid");

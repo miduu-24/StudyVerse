@@ -78,4 +78,10 @@ public class LessonController {
     public void deleteLesson(@PathVariable Long id) {
         lessonService.deleteById(id);
     }
+
+    @GetMapping("/subject/{subject}")
+    public List<Lesson> getLessonsBySubject(@PathVariable String subject) {
+        return lessonService.findAllBySubject(subject);
+    }
+
 }

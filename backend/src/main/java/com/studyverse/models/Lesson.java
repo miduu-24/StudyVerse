@@ -26,6 +26,9 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Subject cannot be empty")
+    private String subject;
+
     @NotBlank(message = "Title cannot be empty")
     private String title;
 

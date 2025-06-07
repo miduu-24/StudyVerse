@@ -29,4 +29,8 @@ public class LessonService {
     public void deleteById(Long id) {
         lessonRepository.deleteById(id);
     }
+
+    public List<Lesson> findAllBySubject(String subject) {
+        return lessonRepository.findAllBySubject(subject);
+    }
 }

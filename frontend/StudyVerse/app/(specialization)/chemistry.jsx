@@ -1,43 +1,43 @@
-import { View, Text, StyleSheet, Appearance, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Appearance,
+  Button,
+  Pressable,
+} from "react-native";
 import React from "react";
-import AntDesign from "@expo/vector-icons/AntDesign";
-import { Link } from "expo-router";
 
 import { Colors } from "@/constants/Colors";
+import { Link } from "expo-router";
 
 const colorScheme = Appearance.getColorScheme();
 
 const theme = colorScheme === "dark" ? Colors.dark : Colors.light;
 
-const App = () => {
+export default function ChimLectures() {
   return (
     <View style={styles.container}>
-      <AntDesign name="checkcircle" style={styles.icon} />
-
-      <Text style={styles.title}>Bine ai venit în StudyVerse!</Text>
-
-      <Link href="/(specialization)/math" asChild>
+      <Text style={styles.title}>Chimie</Text>
+      <Text>{"\n"}</Text>
+      <Link href="" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Matematică</Text>
+          <Text style={styles.buttonText}>Lecții</Text>
         </Pressable>
       </Link>
-
-      <Link href="/(specialization)/chemistry" asChild>
-        <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Chimie</Text>
-        </Pressable>
-      </Link>
-
-      <Link href="/(specialization)/tests" asChild>
+      <Link href="" asChild>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>Teste</Text>
         </Pressable>
       </Link>
+      <Link href="" asChild>
+        <Pressable style={styles.button}>
+          <Text style={styles.buttonText}>Atomi 3D</Text>
+        </Pressable>
+      </Link>
     </View>
   );
-};
-
-export default App;
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -46,18 +46,11 @@ const styles = StyleSheet.create({
     backgroundColor: theme.background,
   },
   title: {
-    fontSize: 35,
-    textAlign: "center",
+    fontSize: 30,
     fontWeight: "bold",
     color: theme.text,
-    paddingBottom: 20,
-  },
-  icon: {
-    fontSize: 110,
-    color: theme.tint,
     textAlign: "center",
-    margin: 20,
-    paddingTop: 20,
+    marginTop: 50,
   },
   button: {
     backgroundColor: theme.button,

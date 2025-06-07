@@ -12,7 +12,7 @@ export const Colors = {
   light: {
     text: 'rgb(0, 0, 0)',
     background: '#fff',
-    headerBackground: 'rgb(181, 27, 27)',
+    headerBackground: 'rgb(88, 88, 88)',
     tint: tintColorLight,
     icon: '#687076',
     tabIconDefault: '#687076',
@@ -25,7 +25,7 @@ export const Colors = {
   dark: {
     text: 'rgb(255, 255, 255)',
     background: '#151718',
-    headerBackground: 'rgb(34, 67, 179)',
+    headerBackground: 'rgb(88, 88, 88)',
     tint: tintColorDark,
     icon: '#9BA1A6',
     tabIconDefault: '#9BA1A6',

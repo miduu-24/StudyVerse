@@ -14,6 +14,5 @@ public class UserDTO {
     private String backgroundPhotoPath;
     private Integer scoreMath;
     private Integer scoreChemistry;
-    private Integer problemHistory;
 
 }

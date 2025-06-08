@@ -29,19 +29,19 @@ export default function MathLectures() {
         </Pressable>
       </Link>
 
-      <Link href="" asChild>
+      <Link href="../../(math)/tests" asChild>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>Teste</Text>
         </Pressable>
       </Link>
 
-      <Link href="" asChild>
+      <Link href="../../(math)/drawing" asChild>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>Desen geometric</Text>
         </Pressable>
       </Link>
 
-      <Link href="" asChild>
+      <Link href="../../(math)/games" asChild>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>Jocuri</Text>
         </Pressable>

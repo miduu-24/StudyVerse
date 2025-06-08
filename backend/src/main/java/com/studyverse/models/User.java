@@ -39,5 +39,4 @@ public class User {
 
     private Integer scoreMath = 0;
     private Integer scoreChemistry = 0;
-    private Integer problemHistory = 0;
 }

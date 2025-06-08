@@ -38,7 +38,7 @@ export default function LectiiLayout() {
         options={{
           title: "Teste",
           headerTitleAlign: "center",
-          headerShown: true,
+          headerShown: false,
         }}
       />
       <Tabs.Screen

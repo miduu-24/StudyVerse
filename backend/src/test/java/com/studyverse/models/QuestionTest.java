@@ -33,7 +33,7 @@ public class QuestionTest {
                 10,
                 0,
                 0,
-                3,
+
                 null);
 
         Set<ConstraintViolation<Question>> violations = validator.validate(question);
@@ -47,7 +47,7 @@ public class QuestionTest {
                 "",
                 "A", "B", "C", "D",
                 "A",
-                10, 0, 0, 3,
+                10, 0, 0,
                 null);
 
         Set<ConstraintViolation<Question>> violations = validator.validate(question);
@@ -64,7 +64,7 @@ public class QuestionTest {
                 "Berlin",
                 "Madrid",
                 "",
-                10, 0, 0, 3,
+                10, 0, 0,
                 null);
 
         Set<ConstraintViolation<Question>> violations = validator.validate(question);
@@ -81,7 +81,7 @@ public class QuestionTest {
                 "Berlin",
                 "Madrid",
                 "A",
-                10, 0, 0, 10, // Invalid
+                10, 0, 0, // Invalid
                 null);
 
         Set<ConstraintViolation<Question>> violations = validator.validate(question);
@@ -98,7 +98,7 @@ public class QuestionTest {
                 "Berlin",
                 "Madrid",
                 "A",
-                10, 0, 0, 4,
+                10, 0, 0,
                 null);
 
         Set<ConstraintViolation<Question>> violations = validator.validate(question);

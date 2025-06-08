@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class QuestionDTO {
+    private Long id;
 
     private String question;
 
@@ -13,11 +14,4 @@ public class QuestionDTO {
     private String optionB;
     private String optionC;
     private String optionD;
-
-    private String correctAnswer;
-
-    private Integer scoreMath;
-    private Integer scoreChemistry;
-    private Integer problemHistory;
-    private Integer difficultyLevel;
 }

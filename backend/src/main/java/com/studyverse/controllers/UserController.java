@@ -9,6 +9,7 @@ import com.studyverse.dto.AvatarUpdateDTO;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,7 +36,6 @@ public class UserController {
         user.setEmail(userDTO.getEmail());
         user.setScoreMath(userDTO.getScoreMath());
         user.setScoreChemistry(userDTO.getScoreChemistry());
-        user.setProblemHistory(userDTO.getProblemHistory());
         user.setPhotoPath(userDTO.getPhotoPath());
 
         return userService.save(user);
@@ -57,7 +57,6 @@ public class UserController {
         user.setEmail(userDTO.getEmail());
         user.setScoreMath(userDTO.getScoreMath());
         user.setScoreChemistry(userDTO.getScoreChemistry());
-        user.setProblemHistory(userDTO.getProblemHistory());
         user.setPhotoPath(userDTO.getPhotoPath());
         user.setBackgroundPhotoPath(userDTO.getBackgroundPhotoPath());
 
@@ -88,6 +87,31 @@ public class UserController {
 
         user.setBackgroundPhotoPath(dto.getBackgroundPhotoUrl());
         userService.save(user);
+    }
+
+    @PostMapping("/score")
+    public ResponseEntity<String> updateUserScore(
+            @RequestParam Long userId,
+            @RequestParam String subject,
+            @RequestParam int score // e.g., 10
+    ) {
+        User user = userService.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        switch (subject.toLowerCase()) {
+            case "matematica" -> user.setScoreMath(user.getScoreMath() + score);
+            case "chimie" -> user.setScoreChemistry(user.getScoreChemistry() + score);
+            default -> throw new IllegalArgumentException("Subiect necunoscut: " + subject);
+        }
+
+        userService.save(user);
+        return ResponseEntity.ok("Scor actualizat");
+    }
+
+    @GetMapping("/email/{email}")
+    public User getUserByEmail(@PathVariable String email) {
+        return userService.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
 }

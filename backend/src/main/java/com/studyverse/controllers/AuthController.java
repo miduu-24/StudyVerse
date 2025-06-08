@@ -77,7 +77,6 @@ public class AuthController {
         userData.put("backgroundPhotoPath", user.getBackgroundPhotoPath()); // poate fi null
         userData.put("scoreMath", user.getScoreMath());
         userData.put("scoreChemistry", user.getScoreChemistry());
-        userData.put("problemHistory", user.getProblemHistory());
 
         Map<String, Object> response = new HashMap<>();
         response.put("token", fakeToken);

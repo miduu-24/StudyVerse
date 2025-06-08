@@ -6,6 +6,8 @@ import lombok.*;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Getter
 @Setter
@@ -37,12 +39,12 @@ public class Question {
 
     private Integer scoreMath = 0;
     private Integer scoreChemistry = 0;
-    private Integer problemHistory = 0;
 
     @Min(1)
     @Max(5)
     private Integer difficultyLevel = 1;
 
     @ManyToMany(mappedBy = "questions")
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private Set<Quiz> quizzes;
 }

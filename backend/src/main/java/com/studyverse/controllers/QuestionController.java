@@ -31,11 +31,6 @@ public class QuestionController {
         question.setOptionB(questionDTO.getOptionB());
         question.setOptionC(questionDTO.getOptionC());
         question.setOptionD(questionDTO.getOptionD());
-        question.setCorrectAnswer(questionDTO.getCorrectAnswer());
-        question.setScoreMath(questionDTO.getScoreMath());
-        question.setScoreChemistry(questionDTO.getScoreChemistry());
-        question.setProblemHistory(questionDTO.getProblemHistory());
-        question.setDifficultyLevel(questionDTO.getDifficultyLevel());
 
         return questionService.save(question);
     }
@@ -56,11 +51,6 @@ public class QuestionController {
         question.setOptionB(questionDTO.getOptionB());
         question.setOptionC(questionDTO.getOptionC());
         question.setOptionD(questionDTO.getOptionD());
-        question.setCorrectAnswer(questionDTO.getCorrectAnswer());
-        question.setScoreMath(questionDTO.getScoreMath());
-        question.setScoreChemistry(questionDTO.getScoreChemistry());
-        question.setProblemHistory(questionDTO.getProblemHistory());
-        question.setDifficultyLevel(questionDTO.getDifficultyLevel());
 
         return questionService.save(question);
     }

@@ -16,6 +16,8 @@ import { Colors } from "@/constants/Colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import SettingMenu from "../../components/SettingMenu"; // Importăm SettingMenu pentru a-l folosi în acest component
 import ProgressBar from "../../components/ProgressBar"; // Importăm ProgressBar pentru a-l folosi în acest component
+import { useFocusEffect } from "@react-navigation/native";
+
 const colorScheme = Appearance.getColorScheme();
 const theme = colorScheme === "dark" ? Colors.dark : Colors.light;
 const DEFAULT_BACKGROUND = "https://www.gravatar.com/avatar/?d=mp";
@@ -23,6 +25,24 @@ const DEFAULT_AVATAR = "https://www.gravatar.com/avatar/?d=mp";
 
 export default function ProfileScreen() {
   const { user, login, register, logout, setUser } = useContext(AuthContext);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      if (!user?.email) return;
+
+      fetch(`http://192.168.100.9:8080/api/users/email/${user.email}`)
+        .then((res) => res.json())
+        .then((updatedUser) => {
+          setUser((prev) => ({
+            ...prev,
+            scoreMath: updatedUser.scoreMath,
+            scoreChemistry: updatedUser.scoreChemistry,
+            problemHistory: updatedUser.problemHistory,
+          }));
+        })
+        .catch((err) => console.error("Eroare fetch scor user:", err));
+    }, [user?.email])
+  );
 
   const [mode, setMode] = useState("login");
   const [email, setEmail] = useState("");

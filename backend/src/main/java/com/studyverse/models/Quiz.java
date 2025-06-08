@@ -46,5 +46,6 @@ public class Quiz {
     // 🔹 Relația cu lecția părinte
     @ManyToOne
     @JoinColumn(name = "lesson_id")
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private Lesson lesson;
 }

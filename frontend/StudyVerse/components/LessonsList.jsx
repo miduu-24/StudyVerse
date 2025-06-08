@@ -35,7 +35,7 @@ function LessonsList({ type }) {
 
   return (
     <View>
-      <Text style={styles.heading}>Lecții disponibile ({type})</Text>
+      <Text style={styles.heading}>Lecții disponibile</Text>
       <FlatList
         data={lessons}
         keyExtractor={(item) => item.id.toString()}

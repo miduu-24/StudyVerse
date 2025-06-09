@@ -30,7 +30,7 @@ export default function ChimLectures() {
           <Text style={styles.buttonText}>Teste</Text>
         </Pressable>
       </Link>
-      <Link href="" asChild>
+      <Link href="../../(chemistry)/3d" asChild>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>Atomi 3D</Text>
         </Pressable>

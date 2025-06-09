@@ -1,4 +1,5 @@
 package com.studyverse.models;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -20,12 +21,16 @@ public class Molecule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Name cannot be empty")
     private String name;
+    private String symbol;
+    private Integer atomicNumber;
+    private Double atomicMass;
+    private Integer groupNumber;
+    private Integer period;
+    private String category;
 
-    @NotBlank(message = "Formula cannot be empty")
-    private String formula;
-
-    @NotBlank(message = "model3DPath cannot be empty")
-    private String model3DPath;
+    private String electronShells; // ex: "[2, 8, 1]"
+    private Integer protons;
+    private Integer neutrons;
+    private Integer electrons;
 }
